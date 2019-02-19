@@ -93,8 +93,11 @@ function buyItems() {
                 connection.query(updateDB,
                         [
                           {
+                            //updating the SQL database to reflect the remaining quantity
                             stock_quantity: (parseInt(product.stock_quantity) - parseInt(stock))
-                            ,product_sales: (parseInt(product.product_sales) + parseInt(stock))
+                            //the price of the product multiplied by the quantity purchased is added to the product's product_sales
+                            ,product_sales: (parseInt(product.price) * parseInt(stock))
+                            //update the CRUD so we know that record got touched.
                             ,CRUD: "U"
                           }
                           , 
